@@ -48,14 +48,58 @@ class ModelTrainer:
                 "XGBRegressor": XGBRegressor(),
                 "CatBoostClassifier": CatBoostClassifier(verbose=0)
             }
-
+            params = {
+            "LinearRegression": {},
+            "DecisionTreeRegressor": {
+            'criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+            'max_depth': [None, 5, 10, 15, 20],
+            'min_samples_split': [2, 5, 10],
+            'min_samples_leaf': [1, 2, 4]
+            },
+            "RandomForestRegressor": {
+                'n_estimators': [100, 200],
+                'max_depth': [None, 10, 20],
+                'min_samples_split': [2, 5],
+                'min_samples_leaf': [1, 2]
+            },
+            "GradientBoostingRegressor": {
+                'n_estimators': [100, 200],
+                'learning_rate': [0.01, 0.1, 0.2],
+                'max_depth': [3, 5, 7],
+                'min_samples_split': [2, 5],
+                'min_samples_leaf': [1, 2]  
+            },
+            "AdaBoostRegressor": {
+                'n_estimators': [50, 100],
+                'learning_rate': [0.01, 0.1, 1.0]   
+            
+            },
+        
+            "KNeighborsRegressor": {
+                'n_neighbors': [3, 5, 7],
+                'weights': ['uniform', 'distance'],
+                'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute']
+            },
+            "XGBRegressor": {
+                'n_estimators': [100, 200],
+                'learning_rate': [0.01, 0.1, 0.2],
+                'max_depth': [3, 5, 7],
+                'min_child_weight': [1, 3, 5]
+            },
+            "CatBoostClassifier": {
+                'iterations': [100, 200],
+                'learning_rate': [0.01, 0.1, 0.2],
+                'depth': [3, 5, 7],
+                'l2_leaf_reg': [1, 3, 5]
+            }
+            }   
             model_report:dict=evaluate_models(
                 X_train=X_train,
                 y_train=y_train,
                 X_test=X_test,
                 y_test=y_test,
                 models=models,
-                param={}
+                param=params
             )
 
             for model_name, model in models.items():
