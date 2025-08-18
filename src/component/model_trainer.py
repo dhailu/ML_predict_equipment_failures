@@ -28,7 +28,7 @@ class ModelTrainer:
     def __init__(self):
         self.model_trainer_config = ModelTrainerConfig()
 
-    def initiate_model_trainer(self, train_array, test_array, preprocessor_path):
+    def initiate_model_trainer(self, train_array, test_array):
         try:
             logging.info("Splitting training and testing data")
             X_train, y_train, X_test, y_test = (
@@ -48,8 +48,15 @@ class ModelTrainer:
                 "XGBRegressor": XGBRegressor(),
                 "CatBoostClassifier": CatBoostClassifier(verbose=0)
             }
-################
-            model_report = {}
+
+            model_report:dict=evaluate_models(
+                X_train=X_train,
+                y_train=y_train,
+                X_test=X_test,
+                y_test=y_test,
+                models=models,
+                param={}
+            )
 
             for model_name, model in models.items():
                 logging.info(f"Training model: {model_name}")
@@ -62,8 +69,8 @@ class ModelTrainer:
                 mse = mean_squared_error(y_test, y_pred)
                 
                 model_report[model_name] = {
-                    "r2_score": r2,
-                    "mean_absolute_error": mae,
+                    "r2_score": r2,'\n'
+                    "mean_absolute_error": mae,'\n'
                     "mean_squared_error": mse
                 }
             
