@@ -6,7 +6,7 @@ from src.exception import CustomeException
 
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.model_selection import GridSearchCV
- 
+import pickle
       
 
 def save_object(obj, file_path):
@@ -59,17 +59,11 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
         raise CustomeException(e, sys)
 ###
 
+ 
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return pickle.load(file_obj)
 
-
-
-
-    
-
-    
-# def load_object(file_path):
-#     try:
-#         with open(file_path, "rb") as file_obj:
-#             return pickle.load(file_obj)
-
-#     except Exception as e:
-#         raise CustomException(e, sys)
+    except Exception as e:
+        raise CustomeException(e, sys)
