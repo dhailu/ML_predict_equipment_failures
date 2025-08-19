@@ -25,13 +25,13 @@ class PredictPipeline:
         
 class CustomData:
     def __init__(self, 
-                equipment_id: str,
-                equipment_type: str,
-                location: str,
-                install_date,
-                last_service_date: str,
-                next_scheduled_service: str,
-                service_priority: str,
+                # equipment_id: str,
+                # equipment_type: str,
+                # location: str,
+                # install_date,
+                # last_service_date: str,
+                # next_scheduled_service: str,
+                # service_priority: str,
                 age_days: int,
                 runtime_hours: int,
                 temperature: int,
@@ -42,13 +42,13 @@ class CustomData:
                 manual_override: int,
                 downtime_last_30d: int 
                 ):
-        self.equipment_id = equipment_id
-        self.equipment_type = equipment_type        
-        self.location = location
-        self.install_date = install_date    
-        self.last_service_date = last_service_date
-        self.next_scheduled_service = next_scheduled_service
-        self.service_priority = service_priority
+        # self.equipment_id = equipment_id
+        # self.equipment_type = equipment_type        
+        # self.location = location
+        # self.install_date = install_date    
+        # self.last_service_date = last_service_date
+        # self.next_scheduled_service = next_scheduled_service
+        # self.service_priority = service_priority
         self.age_days = age_days
         self.runtime_hours = runtime_hours
         self.temperature = temperature
@@ -62,13 +62,13 @@ class CustomData:
     def get_data_as_data_frame(self):
         try:
             custom_data_input_dict = {
-                "equipment_id": [self.equipment_id],
-                "equipment_type": [self.equipment_type],
-                "location": [self.location],
-                "install_date": [self.install_date],
-                "last_service_date": [self.last_service_date],
-                "next_scheduled_service": [self.next_scheduled_service],
-                "service_priority": [self.service_priority],
+                # "equipment_id": [self.equipment_id],
+                # "equipment_type": [self.equipment_type],
+                # "location": [self.location],
+                # "install_date": [self.install_date],
+                # "last_service_date": [self.last_service_date],
+                # "next_scheduled_service": [self.next_scheduled_service],
+                # "service_priority": [self.service_priority],
                 "age_days": [self.age_days],
                 "runtime_hours": [self.runtime_hours],
                 "temperature": [self.temperature],

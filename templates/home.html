@@ -1,119 +1,136 @@
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Equipment Failure Prediction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { margin: 0; padding: 24px; background: #f7f7fb; }
+    .card { max-width: 920px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); }
+    h1 { margin-top: 0; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .col-4 { grid-column: span 4; } .col-6 { grid-column: span 6; } .col-12 { grid-column: span 12; }
+    label { display: block; font-size: 0.9rem; color: #333; margin-bottom: 6px; }
+    input[type="number"], input[type="text"], select {
+      width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 0.95rem; background: #fff;
+    }
+    .row { margin-bottom: 10px; }
+    .actions { display: flex; gap: 12px; margin-top: 12px; }
+    button {
+      border: 0; background: #3b82f6; color: #fff; padding: 12px 18px; border-radius: 10px; cursor: pointer; font-weight: 600;
+    }
+    button.secondary { background: #e5e7eb; color: #111827; }
+    .note { color: #6b7280; font-size: 0.9rem; margin-top: 8px; }
+    .result { margin-top: 18px; padding: 12px 14px; border-radius: 10px; background: #f1f5f9; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
 <body>
-    <div class="login">
-       <h1>failure_within_7_days</h1>
-   
-       <form action="{{url_for('predict_datapoint')}}" method="post">
-        <h1>
-            <legend>Equipment failur prediction</legend>
-        </h1>
+  <div class="card">
+    <h1>Predict Equipment Failure</h1>
+    <p class="note">Fill in the features and submit to get a failure prediction (0/1) and probability.</p>
 
-
-        <div class="mb-3">
-            <label class="form-label">Equipment ID</label>
-            <select class="form-control" name="Equipment ID" placeholder="Enter you Equipment ID" required>
-                <option class="placeholder" selected disabled value="">Select your Equipment ID</option>
-                <option value="male">
-                    Male
-                </option>
-                <option value="female">
-                    Female
-                </option>
-            </select>
+    <form method="POST" action="{{ url_for('predict') }}">
+      <div class="grid">
+        <!-- Categorical -->
+        <div class="col-4">
+          <label for="equipment_type">Equipment Type</label>
+          <select id="equipment_type" name="equipment_type" required>
+            {% for opt in equipment_types or ['HVAC','Elevator','Generator','Pump','Boiler'] %}
+              <option value="{{ opt }}">{{ opt }}</option>
+            {% endfor %}
+          </select>
         </div>
 
-
-        <div class="mb-3">
-            <label class="form-label">Race or Ethnicity</label>
-            <select class="form-control" name="ethnicity" placeholder="Enter you ethnicity" required>
-                <option class="placeholder" selected disabled value="">Select Ethnicity</option>
-                <option value="group A">
-                    Group A
-                </option>
-                <option value="group B">
-                    Group B
-                </option>
-                <option value="group C">
-                    Group C
-                </option>
-                <option value="group D">
-                    Group D
-                </option>
-                <option value="group E">
-                    Group E
-                </option>
-            </select>
+        <div class="col-4">
+          <label for="location">Location</label>
+          <select id="location" name="location" required>
+            {% for opt in locations or ['Building A','Building B','Building C','Warehouse 1','Warehouse 2'] %}
+              <option value="{{ opt }}">{{ opt }}</option>
+            {% endfor %}
+          </select>
         </div>
 
+        <div class="col-4">
+          <label for="service_priority">Service Priority</label>
+          <select id="service_priority" name="service_priority" required>
+            {% for opt in priorities or ['Low','Medium','High'] %}
+              <option value="{{ opt }}">{{ opt }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
-        <div class="mb-3">
-            <label class="form-label">Parental Level of Education</label>
-            <select class="form-control" name="parental_level_of_education"
-                placeholder="Enter you Parent Education" required>
-                <option class="placeholder" selected disabled value="">Select Parent Education</option>
-                <option value="associate's degree">
-                    associate's degree
-                </option>
-                <option value="bachelor's degree">
-                    bachelor's degree
-                </option>
-                <option value="high school">
-                    high school
-                </option>
-                <option value="master's degree">
-                    master's degree
-                </option>
-                <option value="some college">
-                    some college
-                </option>
-                <option value="some high school">
-                    some high school
-                </option>
-            </select>
+        <!-- Numeric -->
+        <div class="col-4">
+          <label for="age_days">Age (days)</label>
+          <input type="number" id="age_days" name="age_days" min="0" step="1" placeholder="e.g., 800" required />
         </div>
-        <div class="mb-3">
 
+        <div class="col-4">
+          <label for="runtime_hours">Runtime Hours</label>
+          <input type="number" id="runtime_hours" name="runtime_hours" min="0" step="0.01" placeholder="e.g., 5200" required />
+        </div>
 
-            <label class="form-label">Lunch Type</label>
-            <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
-                <option class="placeholder" selected disabled value="">Select Lunch Type</option>
-                <option value="free/reduced">
-                    free/reduced
-                </option>
-                <option value="standard">
-                    standard
-                </option>
-            </select>
+        <div class="col-4">
+          <label for="temperature">Temperature (°C)</label>
+          <input type="number" id="temperature" name="temperature" step="0.01" placeholder="e.g., 88.5" required />
         </div>
-        <div class="mb-3">
-            <label class="form-label">Test preparation Course</label>
-            <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
-                required>
-                <option class="placeholder" selected disabled value="">Select Test_course</option>
-                <option value="none">
-                    None
-                </option>
-                <option value="completed">
-                    Completed
-                </option>
-            </select>
+
+        <div class="col-4">
+          <label for="vibration_level">Vibration (mm/s)</label>
+          <input type="number" id="vibration_level" name="vibration_level" step="0.01" placeholder="e.g., 6.1" required />
         </div>
-        <div class="mb-3">
-            <label class="form-label">Writing Score out of 100</label>
-            <input class="form-control" type="number" name="reading_score"
-                placeholder="Enter your Reading score" min='0' max='100' />
+
+        <div class="col-4">
+          <label for="power_consumption_kw">Power (kW)</label>
+          <input type="number" id="power_consumption_kw" name="power_consumption_kw" step="0.01" placeholder="e.g., 25.3" required />
         </div>
-        <div class="mb-3">
-            <label class="form-label">Reading Score out of 100</label>
-            <input class="form-control" type="number" name="writing_score"
-                placeholder="Enter your Reading Score" min='0' max='100' />
+
+        <div class="col-4">
+          <label for="humidity_level">Humidity (%)</label>
+          <input type="number" id="humidity_level" name="humidity_level" min="0" max="100" step="0.01" placeholder="e.g., 70.2" required />
         </div>
-        <div class="mb-3">
-            <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
+
+        <div class="col-4">
+          <label for="error_codes_count">Error Codes (count)</label>
+          <input type="number" id="error_codes_count" name="error_codes_count" min="0" step="1" placeholder="e.g., 4" required />
         </div>
+
+        <div class="col-4">
+          <label for="manual_override">Manual Override</label>
+          <select id="manual_override" name="manual_override" required>
+            <option value="0">0 - No</option>
+            <option value="1">1 - Yes</option>
+          </select>
+        </div>
+
+        <div class="col-4">
+          <label for="downtime_last_30d">Downtime (hrs, last 30d)</label>
+          <input type="number" id="downtime_last_30d" name="downtime_last_30d" min="0" step="0.01" placeholder="e.g., 3.4" required />
+        </div>
+
+        <!-- Optional: equipment_id text (ignored by model but allowed if you keep X columns aligned) -->
+        <div class="col-12">
+          <label for="equipment_id">Equipment ID (optional)</label>
+          <input type="text" id="equipment_id" name="equipment_id" placeholder="e.g., 1234-5678 (kept for record)" />
+        </div>
+
+        <!-- Actions -->
+        <div class="col-12 actions">
+          <button type="submit">Predict Failure</button>
+          <button type="reset" class="secondary">Reset</button>
+        </div>
+      </div>
     </form>
-    <h2>
-       THE  prediction is {{results}}
-    </h2>
-   <body>
+
+    {% if prediction is defined %}
+      <div class="result">
+        <div><strong>Prediction:</strong> {{ prediction }}</div>
+        {% if probability is defined %}
+          <div><strong>Probability of failure:</strong> {{ '%.3f'|format(probability) }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
 </html>

@@ -52,6 +52,7 @@ class DataTransformation:
 
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
+       
 
             preprocessor=ColumnTransformer(
                 [
@@ -64,7 +65,7 @@ class DataTransformation:
             )
 
             return preprocessor
-        
+            
         except Exception as e:
             raise CustomeException(e,sys)
         

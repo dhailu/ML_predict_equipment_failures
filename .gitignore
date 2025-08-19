@@ -1,4 +1,5 @@
 venv11/
 Syntethic_dataset.ipynb 
 resources.txt
-.artifacts/
+artifacts/
+test_reading_pkl_data.ipynb
