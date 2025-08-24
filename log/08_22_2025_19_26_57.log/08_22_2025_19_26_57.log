@@ -1,0 +1,4 @@
+[2025-08-22 19:26:57,981] 97 werkzeug - WARNING -  * Debugger is active!
+[2025-08-22 19:26:57,997] 97 werkzeug - INFO -  * Debugger PIN: 102-597-050
+[2025-08-22 19:27:02,846] 97 werkzeug - INFO - 127.0.0.1 - - [22/Aug/2025 19:27:02] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-22 19:28:37,833] 97 werkzeug - INFO -  * Detected change in 'c:\\users\\dejene\\documents\\git_comany\\ml_predict_equipment_failures\\src\\pipeline\\predict_pipeline.py', reloading

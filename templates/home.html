@@ -32,6 +32,8 @@
 
     <form method="POST" action="{{ url_for('predict') }}">
       <div class="grid">
+
+
         <!-- Categorical -->
         <div class="col-4">
           <label for="equipment_type">Equipment Type</label>
@@ -59,6 +61,7 @@
             {% endfor %}
           </select>
         </div>
+
 
         <!-- Numeric -->
         <div class="col-4">

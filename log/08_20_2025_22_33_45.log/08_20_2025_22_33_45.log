@@ -1,0 +1,6 @@
+[2025-08-20 22:33:45,466] 97 werkzeug - WARNING -  * Debugger is active!
+[2025-08-20 22:33:45,481] 97 werkzeug - INFO -  * Debugger PIN: 102-597-050
+[2025-08-20 22:33:57,049] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 22:33:57] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 22:34:06,035] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 22:34:06] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 22:35:56,964] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 22:35:56] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-21 09:21:23,419] 97 werkzeug - INFO - 127.0.0.1 - - [21/Aug/2025 09:21:23] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -

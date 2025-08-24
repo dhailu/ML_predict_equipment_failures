@@ -1,0 +1,11 @@
+[2025-08-23 15:22:55,288] 97 werkzeug - WARNING -  * Debugger is active!
+[2025-08-23 15:22:55,312] 97 werkzeug - INFO -  * Debugger PIN: 102-597-050
+[2025-08-23 15:23:51,801] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:23:51] "GET / HTTP/1.1" 200 -
+[2025-08-23 15:24:17,608] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:24:17] "POST /predict HTTP/1.1" 200 -
+[2025-08-23 15:24:56,385] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:24:56] "POST /predict HTTP/1.1" 200 -
+[2025-08-23 15:25:53,806] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:25:53] "POST /predict HTTP/1.1" 200 -
+[2025-08-23 15:27:17,065] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:27:17] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-23 15:27:28,030] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:27:28] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-23 15:27:34,744] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:27:34] "POST /predict HTTP/1.1" 200 -
+[2025-08-23 15:28:16,969] 97 werkzeug - INFO - 127.0.0.1 - - [23/Aug/2025 15:28:16] "POST /predict HTTP/1.1" 200 -
+[2025-08-23 15:39:55,625] 97 werkzeug - INFO -  * Detected change in 'c:\\users\\dejene\\documents\\git_comany\\ml_predict_equipment_failures\\src\\component\\model_trainer.py', reloading

@@ -1,0 +1,14 @@
+[2025-08-20 15:08:27,374] 97 werkzeug - WARNING -  * Debugger is active!
+[2025-08-20 15:08:27,396] 97 werkzeug - INFO -  * Debugger PIN: 102-597-050
+[2025-08-20 15:09:52,321] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:09:52] "GET / HTTP/1.1" 200 -
+[2025-08-20 15:09:52,415] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:09:52] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2025-08-20 15:10:06,709] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:10:06] "GET /predict HTTP/1.1" 200 -
+[2025-08-20 15:12:05,800] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:12:05] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 15:12:31,716] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:12:31] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 15:17:18,715] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:17:18] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 15:17:42,704] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:17:42] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 15:17:49,933] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 15:17:49] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 16:10:59,922] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 16:10:59] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 16:11:18,838] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 16:11:18] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 16:14:36,741] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 16:14:36] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[2025-08-20 16:19:15,000] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2025 16:19:15] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -

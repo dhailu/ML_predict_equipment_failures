@@ -1,0 +1,21 @@
+[2025-08-23 15:02:09,176] 27 root - INFO - Entered the data ingestion method or component
+[2025-08-23 15:02:09,193] 30 root - INFO - Read the dataset as dataframe
+[2025-08-23 15:02:09,210] 36 root - INFO - Train test split initiated
+[2025-08-23 15:02:09,226] 43 root - INFO - Ingestion of the data is completed
+[2025-08-23 15:02:09,234] 81 root - INFO - Read train and test data completed
+[2025-08-23 15:02:09,234] 83 root - INFO - Obtaining preprocessing object
+[2025-08-23 15:02:09,235] 55 root - INFO - Categorical columns: ['equipment_id', 'equipment_type', 'location', 'service_priority']
+[2025-08-23 15:02:09,235] 56 root - INFO - Numerical columns: ['age_days', 'runtime_hours', 'temperature', 'vibration_level', 'power_consumption_kw', 'humidity_level', 'error_codes_count', 'manual_override', 'downtime_last_30d']
+[2025-08-23 15:02:09,237] 97 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[2025-08-23 15:02:09,308] 109 root - INFO - Saved preprocessing object.
+[2025-08-23 15:02:09,314] 33 root - INFO - Splitting training and testing data
+[2025-08-23 15:20:46,734] 107 root - INFO - Training model: RandomForestRegressor
+[2025-08-23 15:20:48,921] 107 root - INFO - Training model: GradientBoostingRegressor
+[2025-08-23 15:20:52,140] 107 root - INFO - Training model: AdaBoostRegressor
+[2025-08-23 15:20:52,511] 107 root - INFO - Training model: LinearRegression
+[2025-08-23 15:20:52,765] 107 root - INFO - Training model: KNeighborsRegressor
+[2025-08-23 15:20:52,815] 107 root - INFO - Training model: DecisionTreeRegressor
+[2025-08-23 15:20:52,838] 107 root - INFO - Training model: XGBRegressor
+[2025-08-23 15:20:53,159] 107 root - INFO - Training model: CatBoostClassifier
+[2025-08-23 15:20:54,298] 125 root - INFO - Best model found: GradientBoostingRegressor with R2 score: 0.9353273943951258
+[2025-08-23 15:20:54,348] 126 root - INFO - best model is GradientBoostingRegressor(min_samples_leaf=2, n_estimators=200)

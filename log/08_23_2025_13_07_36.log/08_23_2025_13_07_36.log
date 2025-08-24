@@ -1,0 +1,10 @@
+[2025-08-23 13:07:42,939] 27 root - INFO - Entered the data ingestion method or component
+[2025-08-23 13:07:42,956] 30 root - INFO - Read the dataset as dataframe
+[2025-08-23 13:07:42,973] 35 root - INFO - Train test split initiated
+[2025-08-23 13:07:42,994] 42 root - INFO - Ingestion of the data is completed
+[2025-08-23 13:07:43,005] 81 root - INFO - Read train and test data completed
+[2025-08-23 13:07:43,006] 83 root - INFO - Obtaining preprocessing object
+[2025-08-23 13:07:43,006] 55 root - INFO - Categorical columns: ['equipment_id', 'equipment_type', 'location', 'service_priority']
+[2025-08-23 13:07:43,006] 56 root - INFO - Numerical columns: ['age_days', 'runtime_hours', 'temperature', 'vibration_level', 'power_consumption_kw', 'humidity_level', 'error_codes_count', 'manual_override', 'downtime_last_30d']
+[2025-08-23 13:07:43,010] 97 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[2025-08-23 13:07:43,083] 109 root - INFO - Saved preprocessing object.

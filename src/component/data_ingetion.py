@@ -26,10 +26,11 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Entered the data ingestion method or component')
         try:
-            df = pd.read_csv('Notebook/data/eq_maintenance_raw_data.csv') ## Here is main injegs point and can be DB, csv, excel or other source
+            df_raw = pd.read_csv('Notebook/data/eq_maintenance_raw_data.csv') ## Here is main injegs point and can be DB, csv, excel or other source
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
+            df = df_raw.drop(['install_date', 'last_service_date', 'next_scheduled_service'], axis=1) # drop date columns and exclude them from training data
 
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
             logging.info('Train test split initiated')
@@ -59,6 +60,6 @@ if __name__ == "__main__":
     data_transformation = DataTransformation()
     train_arr, test_arr,_ = data_transformation.initiate_data_transformation(train_data, test_data)  
 
-    # model_trainer = ModelTrainer()
-    # # print(model_trainer.initiate_model_trainer(train_array=train_arr, test_array=test_arr, preprocessor_path=None)) 
-    # print(model_trainer.initiate_model_trainer(train_arr, test_arr))
+    model_trainer = ModelTrainer()
+    # print(model_trainer.initiate_model_trainer(train_array=train_arr, test_array=test_arr, preprocessor_path=None)) 
+    print(model_trainer.initiate_model_trainer(train_arr, test_arr))

@@ -16,7 +16,7 @@ from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl")
 
 class DataTransformation:
     def __init__(self):
@@ -24,13 +24,15 @@ class DataTransformation:
 
     def get_data_transformer_object(self):
         '''
-        This function si responsible for data trnasformation
+        This function is responsible for data trnasformation
         
         '''
         try:
             numerical_columns =  ['age_days', 'runtime_hours', 'temperature', 'vibration_level', 'power_consumption_kw', 'humidity_level', 'error_codes_count', 'manual_override', 'downtime_last_30d']
 
-            categorical_columns = ['equipment_id', 'equipment_type', 'location', 'install_date', 'last_service_date', 'next_scheduled_service', 'service_priority']
+            categorical_columns = ['equipment_id', 'equipment_type', 'location'
+                                #    , 'install_date', 'last_service_date', 'next_scheduled_service'
+                                   , 'service_priority']
 
             num_pipeline= Pipeline(
                 steps=[
@@ -74,6 +76,7 @@ class DataTransformation:
         try:
             train_df=pd.read_csv(train_path)
             test_df=pd.read_csv(test_path)
+            # print(f' this is a train to see the shape of the train :{train_df.shape()}, Thos is the test to check the test : {test_df.shape()}')
 
             logging.info("Read train and test data completed")
 
@@ -82,7 +85,7 @@ class DataTransformation:
             preprocessing_obj=self.get_data_transformer_object()
 
             target_column_name="failure_within_7_days"
-            numerical_columns =  ['age_days', 'runtime_hours', 'temperature', 'vibration_level', 'power_consumption_kw', 'humidity_level', 'error_codes_count', 'manual_override', 'downtime_last_30d']
+            numerical_columns =  ['equipment_id', 'equipment_type', 'location', 'service_priority', 'age_days', 'runtime_hours', 'temperature', 'vibration_level', 'power_consumption_kw', 'humidity_level', 'error_codes_count', 'manual_override', 'downtime_last_30d']
 
 
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)

@@ -1,0 +1,13 @@
+[2025-08-24 01:53:21,592] 27 root - INFO - Entered the data ingestion method or component
+[2025-08-24 01:53:21,603] 30 root - INFO - Read the dataset as dataframe
+[2025-08-24 01:53:21,613] 36 root - INFO - Train test split initiated
+[2025-08-24 01:53:21,623] 43 root - INFO - Ingestion of the data is completed
+[2025-08-24 01:53:21,630] 81 root - INFO - Read train and test data completed
+[2025-08-24 01:53:21,630] 83 root - INFO - Obtaining preprocessing object
+[2025-08-24 01:53:21,630] 55 root - INFO - Categorical columns: ['equipment_id', 'equipment_type', 'location', 'service_priority']
+[2025-08-24 01:53:21,630] 56 root - INFO - Numerical columns: ['age_days', 'runtime_hours', 'temperature', 'vibration_level', 'power_consumption_kw', 'humidity_level', 'error_codes_count', 'manual_override', 'downtime_last_30d']
+[2025-08-24 01:53:21,631] 97 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[2025-08-24 01:53:21,669] 109 root - INFO - Saved preprocessing object.
+[2025-08-24 01:53:21,672] 41 root - INFO - Splitting training and testing data
+[2025-08-24 01:54:45,728] 111 root - INFO - Best model found: AdaBoost with accuracy score: 0.99
+[2025-08-24 01:54:45,743] 112 root - INFO - best model is AdaBoostClassifier()
