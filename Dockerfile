@@ -1,34 +1,18 @@
-# Use lightweight Python base image
 FROM python:3.12-slim
 
-# Prevent Python from writing pyc files & buffering stdout
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    gcc \
-    g++ \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
-# Create working directory
+# Set working directory
 WORKDIR /app
 
-# Install Python dependencies first (cache layer)
-COPY requirements.txt /app/
-RUN pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
-
-# Copy rest of the application
+# Copy project files
 COPY . /app
 
-# Security: create a non-root user
-RUN useradd -m appuser
-USER appuser
+# Create logs directory with full permissions
+RUN mkdir -p /app/logs && chmod -R 777 /app/logs
 
-# Expose port
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose app port
 EXPOSE 5000
 
 # Run the application
