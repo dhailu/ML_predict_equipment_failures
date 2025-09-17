@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+logs/
+*.log
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter / notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Environment/config
+.env
+*.pem
+*.key
+*.crt
+*.json
+
+# Data (only if you don’t want datasets baked into image)
+# data/

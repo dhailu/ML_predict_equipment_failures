@@ -26,7 +26,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Entered the data ingestion method or component')
         try:
-            df_raw = pd.read_csv('Notebook/data/eq_maintenance_raw_data.csv') ## Here is main injegs point and can be DB, csv, excel or other source
+            df_raw = pd.read_csv('Notebook/data/eq_maintenance_updated_data.csv') ## Here is main injegs point and can be DB, csv, excel or other source
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
