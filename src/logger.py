@@ -25,6 +25,7 @@ formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s - %(message)
 console_handler.setFormatter(formatter)
 logging.getLogger("").addHandler(console_handler)
 
+
 ######################
 
 # LOG_FILE = f'{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log'
