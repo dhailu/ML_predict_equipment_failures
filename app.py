@@ -36,7 +36,7 @@ def predict():
                 humidity_level=float(request.form.get('humidity_level')),
                 error_codes_count=int(request.form.get('error_codes_count')),
                 manual_override=int(request.form.get('manual_override')),
-                downtime_last_30d=int(request.form.get('downtime_last_30d'))
+                downtime_last_30d=float(request.form.get('downtime_last_30d'))
             )
 
             
