@@ -13,6 +13,7 @@ failed_df = test_df[test_df['failure_within_7_days'] == 1]
 # ========== Visualization ==========
 st.subheader("Failures by Equipment Type")
 
+
 # Pie chart
 failure_counts = failed_df['equipment_type'].value_counts()
 fig1, ax1 = plt.subplots()
