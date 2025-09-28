@@ -7,5 +7,6 @@ xgboost
 scikit-learn
 dill
 flask
+streamlit 
 
 # -e .
