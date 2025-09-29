@@ -39,6 +39,5 @@ st.dataframe(failed_df[['equipment_type']].value_counts().reset_index(name='coun
 # ========== Notification Button ==========
 st.subheader("Send Notifications")
 if st.button("Send Email Alerts"):
-    # (placeholder for email logic)
-    
+    # (placeholder for email logic)    
     st.success(" Email alerts sent to maintenance team!")
