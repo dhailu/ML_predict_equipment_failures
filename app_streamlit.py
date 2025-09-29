@@ -32,6 +32,10 @@ st.pyplot(fig2)
 st.subheader("Failed Equipment Details")
 st.dataframe(failed_df[['equipment_id', 'equipment_type', 'location']])
 
+# ========== Details Table ==========
+st.subheader("Failed Equipment count by Type")
+st.dataframe(failed_df[['equipment_type']].value_counts().reset_index(name='count').sort_values(by='count', ascending=False))
+
 # ========== Notification Button ==========
 st.subheader("Send Notifications")
 if st.button("Send Email Alerts"):

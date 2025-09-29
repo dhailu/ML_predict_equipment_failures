@@ -8,5 +8,7 @@ scikit-learn
 dill
 flask
 streamlit 
+sqlalchemy
+psycopg2-binary
 
 # -e .
