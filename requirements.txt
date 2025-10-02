@@ -10,5 +10,6 @@ flask
 streamlit 
 sqlalchemy
 psycopg2-binary
+pymongo
 
 # -e .

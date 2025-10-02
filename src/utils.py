@@ -3,6 +3,8 @@ import sys
 import os 
 import numpy
 from src.exception import CustomeException
+import pandas as pd
+from pymongo import MongoClient
 
 # from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report
@@ -121,3 +123,20 @@ def load_object(file_path):
 
     except Exception as e:
         raise CustomeException(e, sys)
+
+
+## 
+
+def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
+    uri = "mongodb+srv://root:0911015526@cluster0.grltpac.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    client = MongoClient(uri)
+        # Replace with your Atlas connection string
+    # Connect to MongoDB Atlas  
+    db = client["maintenance"]
+    collection = db["equipment_logs"]   
+    # 1. Get MongoDB data into pandas DataFrame
+    df = pd.DataFrame(list(collection.find({}, {"_id": 0})))  # exclude Mongo _id field
+    df.to_csv("Notebook/data/eq_maintenance_raw_data2.csv", index=False)
+    return file_path
+
+
