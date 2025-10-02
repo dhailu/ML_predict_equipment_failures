@@ -28,8 +28,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Entered the data ingestion method or component')
         try:
-            file_path = fetch_data_mongo()
-            df_raw = pd.read_csv(file_path) ## Here is main injegs point and can be DB, csv, excel or other source
+            fetch_data_mongo()
+            df_raw = pd.read_csv("Notebook/data/eq_maintenance_raw_data.csv") ## Here is main injegs point and can be DB, csv, excel or other source
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -66,3 +66,5 @@ if __name__ == "__main__":
     model_trainer = ModelTrainer()
     # print(model_trainer.initiate_model_trainer(train_array=train_arr, test_array=test_arr, preprocessor_path=None)) 
     print(model_trainer.initiate_model_trainer(train_arr, test_arr))
+
+ 
