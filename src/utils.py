@@ -136,7 +136,7 @@ def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
     collection = db["equipment_logs"]   
     # 1. Get MongoDB data into pandas DataFrame
     df = pd.DataFrame(list(collection.find({}, {"_id": 0})))  # exclude Mongo _id field
-    df.to_csv("Notebook/data/eq_maintenance_raw_data2.csv", index=False)
+    df.to_csv("Notebook/data/eq_maintenance_raw_data.csv", index=False)
     return file_path
 
 
