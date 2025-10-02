@@ -1,7 +1,9 @@
 import os
 import sys
 from src.exception import CustomeException
-from src.logger import logging  
+from src.logger import logging
+from src.utils import fetch_data_mongo
+
 from src.component.data_transformation import DataTransformation
 from src.component.data_transformation import DataTransformationConfig 
 
@@ -26,7 +28,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Entered the data ingestion method or component')
         try:
-            df_raw = pd.read_csv('Notebook/data/eq_maintenance_updated_data.csv') ## Here is main injegs point and can be DB, csv, excel or other source
+            fetch_data_mongo()
+            df_raw = pd.read_csv("Notebook/data/eq_maintenance_raw_data.csv") ## Here is main injegs point and can be DB, csv, excel or other source
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
@@ -63,3 +66,5 @@ if __name__ == "__main__":
     model_trainer = ModelTrainer()
     # print(model_trainer.initiate_model_trainer(train_array=train_arr, test_array=test_arr, preprocessor_path=None)) 
     print(model_trainer.initiate_model_trainer(train_arr, test_arr))
+
+ 
