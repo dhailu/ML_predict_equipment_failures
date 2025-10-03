@@ -134,7 +134,7 @@ user = os.getenv("DB_USER")
 password = os.getenv("DB_PASS")
 
 def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
-    uri = f"mongodb+srv://{user}:{password}@cluster0.grltpac.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    uri = f"mongodb+srv://{user}:{password}@Clr_name.grltpac.mongodb.net/?retryWrites=true&w=majority&appName=Clr_name"
     client = MongoClient(uri)
         # Replace with your Atlas connection string
     # Connect to MongoDB Atlas  
@@ -145,6 +145,35 @@ def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
     df.to_csv(file_path, index=False)
     logging.info('Importing of the data from MongoDB is completed')
     return df
+
+
+# Loading data from MongoDB with enhanced error handling
+# Load environment variables
+user = os.getenv("MG_DB_USER")
+password = os.getenv("MG_DB_PASS")
+cluster = os.getenv("DB_HOST")  # safer default #, "cluster0.grltpac.mongodb.net"
+
+
+def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
+    try:
+        #  Build secure URI
+        uri = f"mongodb+srv://{user}:{password}@{cluster}/?retryWrites=true&w=majority&appName=cluster0"
+
+        #  Connect to MongoDB Atlas
+        client = MongoClient(uri, serverSelectionTimeoutMS=5000)  # 5s timeout
+        db = client["maintenance"]
+        collection = db["equipment_logs"]
+
+        #  Load into DataFrame
+        df = pd.DataFrame(list(collection.find({}, {"_id": 0})))  # exclude _id
+        df.to_csv(file_path, index=False)
+
+        logging.info(f" Data imported from MongoDB and saved to {file_path} ({len(df)} rows)")
+        return df
+
+    except Exception as e:
+        logging.error(f" MongoDB fetch failed: {e}")
+        raise
 
 
 
