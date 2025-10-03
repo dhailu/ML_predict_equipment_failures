@@ -5,7 +5,7 @@ import numpy
 from src.exception import CustomeException
 from src.logger import logging
 from pymongo import MongoClient
-from user_pass import get_pass
+# from user_pass import get_pass
 from dotenv import load_dotenv
 load_dotenv()
 
