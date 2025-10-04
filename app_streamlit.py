@@ -122,4 +122,4 @@ if st.button("Send Email Alerts"):
 # st.subheader("Send Notifications")
 # if st.button("Send Email Alerts"):
 #     # (placeholder for email logic)    
-#     st.success(" Email alerts sent to maintenance team!")
+#     st.success(" Email alerts sent to maintenance team!") ##0000FF
