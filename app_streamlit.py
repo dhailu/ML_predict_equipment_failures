@@ -81,7 +81,7 @@ else:
 st.subheader("Send Notifications")
 if st.button("Send Email Alerts"):
     # (placeholder for email logic)    
-    st.success(" Email alerts sent to site leader for site(site_code) and eq_id!")
+    st.success(" Email alerts sent to site leader for site(site_code) and eq_id!") ##0000FF
 
 # ####################################################SECOND OPTION####################################################
 # ## Load your data
