@@ -128,24 +128,6 @@ def load_object(file_path):
         raise CustomeException(e, sys)
 
 
-## 
-
-user = os.getenv("DB_USER")
-password = os.getenv("DB_PASS")
-
-def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
-    uri = f"mongodb+srv://{user}:{password}@Clr_name.grltpac.mongodb.net/?retryWrites=true&w=majority&appName=Clr_name"
-    client = MongoClient(uri)
-        # Replace with your Atlas connection string
-    # Connect to MongoDB Atlas  
-    db = client["maintenance"]
-    collection = db["equipment_logs"]   
-    # 1. Get MongoDB data into pandas DataFrame
-    df = pd.DataFrame(list(collection.find({}, {"_id": 0})))  # exclude Mongo _id field
-    df.to_csv(file_path, index=False)
-    logging.info('Importing of the data from MongoDB is completed')
-    return df
-
 
 # Loading data from MongoDB with enhanced error handling
 # Load environment variables

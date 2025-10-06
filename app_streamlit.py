@@ -12,8 +12,8 @@ st.title(" Equipment Failure Prediction (Batch Mode)")
 
 # ========== File Upload Section ==========
 st.subheader(" Upload Equipment Data (CSV)")
-uploaded_file = st.file_uploader("Upload file here", type="csv") = "artifacts/data.csv"
-
+uploaded_file = st.file_uploader("Upload file here", type="csv") 
+uploaded_file = "artifacts/data.csv"
 
 if uploaded_file is not None:
     # Load file into dataframe
@@ -65,8 +65,10 @@ if uploaded_file is not None:
                 st.dataframe(failed_df[["equipment_id", "equipment_type", "location"]])
 
                 # ====== Notifications ======
-                if st.button(" Send Email Alerts"):
-                    st.success(" Email alerts sent to maintenance team!")
+                # st.subheader("Send Notifications")
+                # if st.button("Send Email Alerts"):
+                #     # (placeholder for email logic)
+                #     st.success(" Email alerts sent to maintenance team!")
 
             else:
                 st.info(" No failures predicted within 7 days.")
@@ -81,7 +83,8 @@ else:
 st.subheader("Send Notifications")
 if st.button("Send Email Alerts"):
     # (placeholder for email logic)    
-    st.success(" Email alerts sent to site leader for site(site_code) and eq_id!") ##0000FF
+    st.success("""Email alerts sent to site leader for predicted falure within 7 days
+               including site_code, eq id and equipment type!""") ##0000FF
 
 # ####################################################SECOND OPTION####################################################
 # ## Load your data
