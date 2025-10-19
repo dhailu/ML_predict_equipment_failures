@@ -3,6 +3,11 @@ import sys
 import os 
 import numpy
 from src.exception import CustomeException
+from src.logger import logging
+from pymongo import MongoClient
+# from user_pass import get_pass
+from dotenv import load_dotenv
+load_dotenv()
 
 # from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, classification_report
@@ -121,3 +126,36 @@ def load_object(file_path):
 
     except Exception as e:
         raise CustomeException(e, sys)
+
+
+
+# Loading data from MongoDB with enhanced error handling
+# Load environment variables
+user = os.getenv("MG_DB_USER")
+password = os.getenv("MG_DB_PASS")
+cluster = os.getenv("DB_HOST")  # safer default #, "cluster0.grltpac.mongodb.net"
+
+
+def fetch_data_mongo(file_path="Notebook/data/eq_maintenance_raw_data.csv"):
+    try:
+        #  Build secure URI
+        uri = f"mongodb+srv://{user}:{password}@{cluster}/?retryWrites=true&w=majority&appName=cluster0"
+
+        #  Connect to MongoDB Atlas
+        client = MongoClient(uri, serverSelectionTimeoutMS=5000)  # 5s timeout
+        db = client["maintenance"]
+        collection = db["equipment_logs"]
+
+        #  Load into DataFrame
+        df = pd.DataFrame(list(collection.find({}, {"_id": 0})))  # exclude _id
+        df.to_csv(file_path, index=False)
+
+        logging.info(f" Data imported from MongoDB and saved to {file_path} ({len(df)} rows)")
+        return df
+
+    except Exception as e:
+        logging.error(f" MongoDB fetch failed: {e}")
+        raise
+
+
+
