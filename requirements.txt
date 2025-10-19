@@ -11,5 +11,9 @@ streamlit
 sqlalchemy
 psycopg2-binary
 pymongo
+base64
+email-validator
+io
+os
 
 # -e .

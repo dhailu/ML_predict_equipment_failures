@@ -1,24 +1,25 @@
 import streamlit as st
 import pandas as pd
+import sys
 import matplotlib.pyplot as plt
 # Assuming PredictPipeline and CustomData are defined in src.pipeline.predict_pipeline
 from src.pipeline.predict_pipeline import PredictPipeline, CustomData
 
 
 # =========================================
-# Streamlit App
+# Streamlit App dataframe
 # =========================================
 st.title(" Equipment Failure Prediction (Batch Mode)")
 
 # ========== File Upload Section ==========
 st.subheader(" Upload Equipment Data (CSV)")
 uploaded_file = st.file_uploader("Upload file here", type="csv") 
-uploaded_file = "artifacts/data.csv"
+uploaded_file = "artifacts/train.csv"
 
 if uploaded_file is not None:
     # Load file into dataframe
     input_df = pd.read_csv(uploaded_file)
-    st.write(" Uploaded Data Preview:", input_df.head())
+    st.write(" Uploaded Data Preview:", input_df.head(5))
 
     # ========== Run Prediction ==========
     if st.button(" Predict Failures"):
@@ -33,6 +34,8 @@ if uploaded_file is not None:
 
             # ====== Summaries ======
             failed_df = input_df[input_df["failure_within_7_days"] == 1]
+            failed_df.reset_index(names='site_leader')
+            # st.info.dataframe(failed_df)
 
             if not failed_df.empty:
                 st.subheader(" Failure Summary")
@@ -85,7 +88,7 @@ if st.button("Send Email Alerts"):
     # (placeholder for email logic)    
     st.success("""Email alerts sent to site leader for predicted falure within 7 days
                including site_code, eq id and equipment type!""") ##0000FF
-
+    st.info("Subject: Equipment Failure Alert\n\nTo: Site Leadr; Site Manager\n\nCC:Project Manger\n\nThe following equipment is predicted to fail within the next 7 days:\n\n- Site Code: Building C, Equipment ID: EQ001, Type: HVAC\n- Site Code: Building C, Equipment ID: EQ002, Type: Boiler\n\nPlease take the necessary actions to address these potential failures.\n\nBest regards,\n\nMaintenance Team") ##0000FF
 # ####################################################SECOND OPTION####################################################
 # ## Load your data
 # test_df = pd.read_csv("artifacts/data.csv")  # replace with your dataset
