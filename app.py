@@ -5,7 +5,7 @@ import pandas as pd
 import os
 from io import BytesIO
 import base64
-
+from email_validator import validate_email, EmailNotValidError
 import matplotlib
 matplotlib.use('Agg')  # use non-GUI backend for server
 import matplotlib.pyplot as plt

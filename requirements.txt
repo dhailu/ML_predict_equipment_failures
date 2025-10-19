@@ -7,13 +7,10 @@ xgboost
 scikit-learn
 dill
 flask
+dotenv
 streamlit 
 sqlalchemy
 psycopg2-binary
 pymongo
-base64
-email-validator
-io
-os
-
+email_validator
 # -e .
